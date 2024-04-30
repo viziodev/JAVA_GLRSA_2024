@@ -7,7 +7,13 @@ import views.PatientView;
 import entities.RV;
 import enums.Etat;
 import views.RvView;
-
+import views.View;
+/*
+ * concrete(Par defaut) ou instance ==> methodes, classe,  et attribut
+ * abstract  ==> methodes et classe
+ * static    ==> methodes et attribut
+ * final     ==> methodes,  attribut et classe
+ */
 public class App {
       //Objet Singleton
       private static Scanner scanner=new Scanner(System.in);
@@ -23,32 +29,32 @@ public class App {
              scanner.nextLine();
              switch (choix) {
                 case 1:
-                     patientService.addPatient(PatientView.saisiePatient());
+                     patientService.add(PatientView.saisiePatient());
                     break;
                 case 2:
-                     PatientView.afficherPatient(patientService.listerPatient());
+                     PatientView.afficherPatient(patientService.lister());
                      break;
                 case 3:
-                Patient pat=patientService.getPatientByNumero( PatientView.saisieNumero());
+                Patient pat=patientService.getByNumero( PatientView.saisieNumero());
                  if (pat==null) {
                        System.out.println("Erreur sur le numero");    
                  } else{
                       RV rv=RvView.saisieRV();
                     //Association de Rv vers Patient
                      rv.setPatient(pat);
-                     rvService.addRv(rv);
+                     rvService.add(rv);
                  }
                     break;
 
                     case 4:
-                           RvView.afficherRv(rvService.listerRV(RvView.saisieEtat()));
+                           RvView.afficherRv(rvService.lister(RvView.saisieEtat()));
                     break;
 
                     case 5:
-                    RvView.afficherRv(rvService.listerRV(RvView.saisieSpecialite()));
+                    RvView.afficherRv(rvService.lister(RvView.saisieSpecialite()));
                     break;
                     case 6:
-                   RV rv= rvService.getRvByNumero(RvView.saisieNumero());
+                   RV rv= rvService.getByNumero(RvView.saisieNumero("Entrer le numero du RV"));
                    if (rv==null) {
                         System.out.println("Ce numero n'existe pas");
                    } else {

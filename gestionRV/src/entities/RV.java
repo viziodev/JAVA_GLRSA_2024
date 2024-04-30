@@ -7,13 +7,8 @@ import java.time.LocalTime;
 import enums.Etat;
 import enums.Specialite;
 
-public class RV {
-  
-    private int id;
+public class RV extends AbstractEntity{
     private static int nbreRv;
-   
-
-    private String  numero;
     private String  motif;
     private LocalDate date;
     private LocalTime heure;
@@ -24,26 +19,13 @@ public class RV {
    
 
     public RV() {
+        
     }
 
     public static int getNbreRv() {
         return ++nbreRv;
     }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
+    
 
     public String getMotif() {
         return motif;

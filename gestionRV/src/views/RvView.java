@@ -3,29 +3,19 @@ package views;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
 import entities.RV;
 import enums.Etat;
 import enums.Specialite;
 
-public class RvView {
-     private  static Scanner scanner;
-     public static void setScanner(Scanner scanner) {
-       RvView.scanner = scanner;
-     }
-
+public class RvView extends View {
+   
      public static RV saisieRV(){
          RV rv=new RV();
-          String date,heure;
           System.out.println("Entrer la Date JJ-MM-AAAA");
-          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-          date=scanner.nextLine();
-          rv.setDate(LocalDate.parse(date,formatter));
+          rv.setDate(formatDate(scanner.nextLine()));
           System.out.println("Entrer l'Heure HH:MN");
-           formatter = DateTimeFormatter.ofPattern("HH:mm");
-           heure=scanner.nextLine();
-           rv.setHeure(LocalTime.parse(heure,formatter));
+           rv.setHeure(formatHeure(scanner.nextLine()));
            System.out.println("Choisir une Specialite");
            rv.setSpecialite(saisieSpecialite());
            scanner.nextLine();
@@ -67,19 +57,11 @@ public class RvView {
         return Specialite.values()[specialite-1];
    }
 
-
-
-public static void afficherRv(RV [] rvs){
+ public static void afficherRv(RV [] rvs){
       for (RV rv: rvs) {
         if (rv==null) return;
         System.out.println(rv);
       }
   }
 
-
-  public static String saisieNumero(){
-    System.out.println("Entrer le Numero");
-      return scanner.nextLine();
-    
-  }
 }

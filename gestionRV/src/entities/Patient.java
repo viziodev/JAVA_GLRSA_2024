@@ -1,10 +1,7 @@
 package entities;
 
-public class Patient {
+public class Patient extends AbstractEntity {
      private static int nbrePatient;
-    
-    private int id;
-     private String numero;
      private String nomComplet;
      private String telephone;
   
@@ -20,18 +17,7 @@ public class Patient {
     public Patient() {
    
     }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getNumero() {
-        return numero;
-    }
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
+   
     public String getNomComplet() {
         return nomComplet;
     }

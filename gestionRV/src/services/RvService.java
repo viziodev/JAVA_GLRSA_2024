@@ -1,29 +1,25 @@
 package services;
 
 
-import entities.Patient;
+
 import entities.RV;
 import enums.Etat;
 import enums.Specialite;
-public class RvService {
-   private   static final  int  N=5;
-         private  RV[]  tabRv=new RV[N];  
-         private int nbre;
-       public String generateNumero(int nbre){
-            int size=String.valueOf(nbre).length();
-            return "RV"+"0".repeat((4-size)<0?0:4-size)+nbre;
-        }
+public class RvService  extends Service<RV>{
+        
+       
+
+  public RvService(){
+       tab=new RV[N];
+  }
         public int generateId(){
           return RV.getNbreRv();
         }
-              public RV[] listerRV() {
-                 return tabRv;
-             }
-
-                public RV[] listerRV(Etat etat) {
+            
+              public RV[] lister(Etat etat) {
                     RV[] rvEtat=new RV[N] ;
                     int nbreEtat=0;
-                    for (RV rv: tabRv) {
+                    for (RV rv: tab) {
                         if (rv!=null && rv.getEtat()==etat) {
                             rvEtat[nbreEtat++]=rv;
                         }
@@ -31,10 +27,10 @@ public class RvService {
                      return rvEtat;
                 }
 
-              public RV[] listerRV(Specialite specialite) {
+              public RV[] lister(Specialite specialite) {
                   RV[] rvSpecialite=new RV[N] ;
                   int nbreSpe=0;
-                    for (RV rv: tabRv) {
+                    for (RV rv: tab) {
                         if (rv!=null && rv.getSpecialite()==specialite) {
                             rvSpecialite[nbreSpe++]=rv;
                         }
@@ -42,14 +38,14 @@ public class RvService {
                  return rvSpecialite;
               }
    
-  
-      public boolean addRv(RV rv){
+        @Override
+      public boolean add(RV rv){
         if (nbre<N) {
             int id=generateId();
             rv.setId(id);
-            rv.setNumero(generateNumero(id)); 
+            rv.setNumero(generateNumero(id,"RV")); 
             rv.setEtat(Etat.Encours);
-            tabRv[nbre++]=rv;
+            tab[nbre++]=rv;
             return true; 
         }
            return false; 
@@ -63,19 +59,11 @@ public class RvService {
                  result=true;    
                 break;
 
-
             default:
                 break;
         }
         return result;
       }
 
-       public RV getRvByNumero(String numero){
-        for (RV  rv : tabRv) {
-               if (rv!=null && rv.getNumero().compareToIgnoreCase(numero)==0) {
-                   return rv;
-               }
-        }
-        return null;
-      }
+       
 }
