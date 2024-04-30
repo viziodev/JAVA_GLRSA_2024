@@ -18,7 +18,7 @@ public class RvView {
      public static RV saisieRV(){
          RV rv=new RV();
           String date,heure;
-          System.out.println("Entrer la Date JJ/MM/AAAA");
+          System.out.println("Entrer la Date JJ-MM-AAAA");
           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
           date=scanner.nextLine();
           rv.setDate(LocalDate.parse(date,formatter));
@@ -46,6 +46,16 @@ public class RvView {
         return Etat.values()[etat-1];
    }
 
+   public static Etat validerEtat(){
+    int etat;
+     do {
+         System.out.println("1-Valider");
+         System.out.println("2-Annuler");
+         etat=scanner.nextInt();
+     } while (etat<1 || etat>2);
+        return Etat.values()[etat];
+   }
+
    public static Specialite saisieSpecialite(){
     int specialite;
      do {
@@ -64,5 +74,12 @@ public static void afficherRv(RV [] rvs){
         if (rv==null) return;
         System.out.println(rv);
       }
+  }
+
+
+  public static String saisieNumero(){
+    System.out.println("Entrer le Numero");
+      return scanner.nextLine();
+    
   }
 }

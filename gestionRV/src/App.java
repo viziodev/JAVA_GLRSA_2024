@@ -5,6 +5,7 @@ import services.PatientService;
 import services.RvService;
 import views.PatientView;
 import entities.RV;
+import enums.Etat;
 import views.RvView;
 
 public class App {
@@ -46,6 +47,20 @@ public class App {
                     case 5:
                     RvView.afficherRv(rvService.listerRV(RvView.saisieSpecialite()));
                     break;
+                    case 6:
+                   RV rv= rvService.getRvByNumero(RvView.saisieNumero());
+                   if (rv==null) {
+                        System.out.println("Ce numero n'existe pas");
+                   } else {
+                       if (rv.getEtat()!=Etat.Encours) {
+                           System.out.println("Ce Rv est deja traite");
+                       }else{
+                            System.out.println(rv);
+                           rvService.traiterRv(rv,RvView.validerEtat());
+                       }
+                       
+                   }
+                    break;
 
                 default:
                     break;
@@ -60,6 +75,7 @@ public class App {
         System.out.println("3-Enregistrer un RV");
         System.out.println("4-Lister Par Etat");
         System.out.println("5-Lister Par Specialite");
+        System.out.println("6-Traiter Demande");
         System.out.println("7-Quiiter");
         return scanner.nextInt();
     }

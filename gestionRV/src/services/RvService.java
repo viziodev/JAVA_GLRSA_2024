@@ -1,6 +1,7 @@
 package services;
 
 
+import entities.Patient;
 import entities.RV;
 import enums.Etat;
 import enums.Specialite;
@@ -52,5 +53,29 @@ public class RvService {
             return true; 
         }
            return false; 
+      }
+
+      public boolean traiterRv(RV rv,Etat etat){
+        boolean result=false;
+        switch (rv.getEtat()) {
+            case Encours:
+               rv.setEtat(etat) ; 
+                 result=true;    
+                break;
+
+
+            default:
+                break;
+        }
+        return result;
+      }
+
+       public RV getRvByNumero(String numero){
+        for (RV  rv : tabRv) {
+               if (rv!=null && rv.getNumero().compareToIgnoreCase(numero)==0) {
+                   return rv;
+               }
+        }
+        return null;
       }
 }
