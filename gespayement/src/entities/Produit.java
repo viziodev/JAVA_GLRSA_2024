@@ -10,7 +10,12 @@ public class Produit {
     private double prix;
     private static int nbre;
     private List<ProduitCommande> produitCommandes=new ArrayList<>();
-
+     public List<ProduitCommande> getProduitCommandes() {
+        return produitCommandes;
+      }
+      public void add(ProduitCommande produitCommande){
+           produitCommandes.add(produitCommande);
+      }
     
     public Produit(int id, String libelle, int qteStock, double prix) {
         this.id = id;

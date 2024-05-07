@@ -11,9 +11,22 @@ public class Commande {
     private double montant;
     private static int nbre;
     private List<ProduitCommande> produitCommandes=new ArrayList<>();
+    public List<ProduitCommande> getProduitCommandes() {
+        return produitCommandes;
+    }
+    public void add(ProduitCommande produitCommande){
+        produitCommandes.add(produitCommande);
+        montant+=produitCommande.getMontant();
+    }
     private Facture facture;
 
     
+    public Facture getFacture() {
+        return facture;
+    }
+    public void setFacture(Facture facture) {
+        this.facture = facture;
+    }
     public Commande(int id, String mumero, LocalDate dateCmde, double montant) {
         this.id = id;
         this.mumero = mumero;

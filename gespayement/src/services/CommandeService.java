@@ -18,8 +18,6 @@ public  class CommandeService implements Service<Commande>   {
         commandes.add(commande);
         return false;
     }
-
-
     @Override
     public List<Commande> show() {
         return commandes;
