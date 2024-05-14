@@ -27,6 +27,11 @@ public class ProduitCommande {
        // montant=qteCmde*produit.getPrix();
     }
     private Commande commande;
+    public ProduitCommande(int qteCmde, Produit produit) {
+        this.qteCmde = qteCmde;
+        this.produit = produit;
+        montant=qteCmde*produit.getPrix();
+    }
     public Commande getCommande() {
         return commande;
     }

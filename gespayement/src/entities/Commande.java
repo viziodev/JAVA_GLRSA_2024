@@ -35,6 +35,9 @@ public class Commande {
     }
     public Commande() {
         id=++nbre;
+        dateCmde=LocalDate.now();
+        int size=String.valueOf(id).length();
+        mumero="COM"+"O".repeat(size>4?0:4-size)+id;
     }
     public int getId() {
         return id;
@@ -62,6 +65,9 @@ public class Commande {
     }
     @Override
     public String toString() {
-        return "Commande [id=" + id + ", mumero=" + mumero + ", dateCmde=" + dateCmde + ", montant=" + montant + "]";
+        return "Commande [id=" + id + ", mumero=" + mumero 
+        + ", dateCmde=" + dateCmde + ", montant=" + montant
+        + ", facture=" + facture + "]";
     }
+    
 }

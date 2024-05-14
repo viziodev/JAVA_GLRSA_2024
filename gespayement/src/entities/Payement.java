@@ -2,7 +2,14 @@ package entities;
 
 public  class Payement implements IPaiement {
      protected static final double Tva=0.18;
-     protected TypePaiement type;
+     private Facture facture;
+     public Facture getFacture() {
+      return facture;
+    }
+    public void setFacture(Facture facture) {
+      this.facture = facture;
+    }
+    protected TypePaiement type;
       public TypePaiement getType() {
       return type;
     }
