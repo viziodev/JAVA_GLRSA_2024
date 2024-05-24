@@ -4,9 +4,7 @@ import java.util.Scanner;
 
 import ism.glrsa.core.Repository;
 import ism.glrsa.data.entity.Classe;
-import ism.glrsa.data.repository.ClasseRepositoryBDO;
 import ism.glrsa.data.repository.ClasseRepositoryBdImpl;
-import ism.glrsa.data.repository.ClasseRepositoryImpl;
 import ism.glrsa.service.ClasseServiceImpl;
 import ism.glrsa.view.ClasseViewImpl;
 
@@ -14,7 +12,7 @@ public class Main {
     private static Scanner scanner=new Scanner(System.in);
     public static void main(String[] args) {
         //
-         Repository<Classe> classeRepository=new ClasseRepositoryBDO();
+         Repository<Classe> classeRepository=new ClasseRepositoryBdImpl();
          ClasseServiceImpl classeServiceImpl=new ClasseServiceImpl(classeRepository);
         //Injection de dependance par constructeur
           ClasseViewImpl classeViewImpl=new ClasseViewImpl(scanner); 
@@ -25,7 +23,11 @@ public class Main {
               choix=  menu() ;
               switch (choix) {
                    case 1:
-                    classeServiceImpl.save(classeViewImpl.saisie());   
+                   Classe classe;
+                   do {
+                       classe=classeViewImpl.saisie();
+                   } while (classeServiceImpl.getBy(classe.getNomClasse())!=null);
+                    classeServiceImpl.save(classe);   
                     break;
                     case 2:
                     classeViewImpl.affiche(classeServiceImpl.show());

@@ -7,6 +7,8 @@ public interface Repository<T> {
        boolean update(T objet);
        boolean delete(int  id);
        List<T> selectAll();
+
        T selectById(int id);
+      
        int count();
 }

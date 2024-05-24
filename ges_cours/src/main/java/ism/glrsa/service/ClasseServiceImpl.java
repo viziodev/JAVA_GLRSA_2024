@@ -5,6 +5,7 @@ import java.util.List;
 import ism.glrsa.core.Repository;
 import ism.glrsa.core.Service;
 import ism.glrsa.data.entity.Classe;
+import ism.glrsa.data.repository.RepositoryBD;
 
 
 public class ClasseServiceImpl implements Service<Classe> {
@@ -28,8 +29,7 @@ public class ClasseServiceImpl implements Service<Classe> {
 
     @Override
     public Classe getBy(String value) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBy'");
+        return ((RepositoryBD) classeRepositoryImpl).selectByLibelle(value);
     }
 
     @Override
